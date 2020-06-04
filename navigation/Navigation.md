@@ -1,0 +1,30 @@
+App Stack Navigator:
+    - Welcome
+    - Auth
+    - Root: BottomTabNavigator:
+        - New Clean: Stack Navigator:
+            - Create Home
+            - Create Address
+        - Adresses: Stack Navigator:
+            - + in Header goes to New Address 
+            - Addresses
+            - Single Address
+            - Edit Address
+        - Schedule:
+            - Appoinments
+            - Booking Hours (Addressses)
+            - Appointment: Tabs (Stack):
+                - Place
+                - Entering
+                - About Home
+                - What to clean
+                - Payment
+                - Confirmation
+        - Profile: Stack Navigator:
+            - Profile Details
+            - See Payment History
+            - Edit Profile
+            - Edit Notifications
+            - Edit Payment Methods
+            - Exit Account -> AntiAuth and goes to WelcomeScreen
+        - Help

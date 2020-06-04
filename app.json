@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "clean-this-week",
+    "scheme": "clean-this-week", 
     "slug": "clean-this-week",
     "platforms": [
       "ios",
