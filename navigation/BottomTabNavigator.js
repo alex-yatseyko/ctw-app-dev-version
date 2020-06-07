@@ -9,6 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 import TabBarIcon from '../components/TabBarIcon';
 import { NavBackground } from './NavBackground'
 
+import CleansRoot from '../screens/CleansRoot';
 import HomeScreen from '../screens/HomeScreen';
 import AddressesScreen from '../screens/AddressesScreen';
 import ScheduleScreen from '../screens/ScheduleScreen';

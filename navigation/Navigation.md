@@ -1,8 +1,8 @@
 App Stack Navigator:
-    - Welcome
-    - Auth
+    - Welcome +
+    - Auth +
     - Root: BottomTabNavigator:
-        - New Clean: Stack Navigator:
+        - Cleans: Stack Navigator:
             - Create Home
             - Create Address
         - Adresses: Stack Navigator:
