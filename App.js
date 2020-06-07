@@ -15,7 +15,7 @@ import useLinking from './navigation/useLinking';
 import BackendApiClient from './api/BackendApiClient';
 
 export default function App(props) {
-  const {token, login, logout} = useAuth()
+  const {token, login, logout, activeTab} = useAuth()
 
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
   const [initialNavigationState, setInitialNavigationState] = React.useState();
@@ -65,7 +65,7 @@ export default function App(props) {
       <AuthContext.Provider value={{
         token,
         login,
-        logout
+        logout,
       }}>
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}

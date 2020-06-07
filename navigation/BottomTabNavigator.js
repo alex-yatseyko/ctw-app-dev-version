@@ -2,6 +2,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image, StyleSheet, View, Animated, Text, TouchableOpacity, Dimensions, ImageBackground } from 'react-native';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
+import { AsyncStorage } from 'react-native';
+import { AuthContext } from '../store/AuthContext'
+import { useNavigation } from '@react-navigation/native';
 
 import TabBarIcon from '../components/TabBarIcon';
 import { NavBackground } from './NavBackground'
@@ -12,17 +15,38 @@ import ScheduleScreen from '../screens/ScheduleScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import HelpScreen from '../screens/HelpScreen';
 
+import {CustomBottomTabBar} from '../components/CustomBottomTabBar'
+
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Addresses';
 
 import { Ionicons, Feather } from '@expo/vector-icons';
 
-const BottomRoutes = () => {
+const BottomRoutes = ({navigation, screenName}) => {
+  const auth = React.useContext(AuthContext) 
+  // const isAuthenticated = !!auth.token
+  const navigation2 = useNavigation();
+
+  useEffect(() => {
+    // console.log('Bottom', auth)
+    // console.log({focused})
+    // console.log(navigation.addListener())
+    // console.log(screenName)
+    // console.log('test', navigation2)
+    // AsyncStorage.setItem('activeTab', 'ad');
+  }, [])
+
   return(
-    <React.Fragment>    
+    <React.Fragment>  
       <BottomTab.Navigator 
         initialRouteName={INITIAL_ROUTE_NAME}
         style={styles.tabWrapper}
+        // tabBar={() => <Image 
+        //   source={require('../assets/images/navbar/navbar-background.png')}
+        //   style={styles.img}
+        // />}
+        tabBar={(props, navigation) => <CustomBottomTabBar navigation={navigation} {...props} />}
+       
         tabBarOptions={{
           tabStyle: {
             backgroundColor: 'transparent',
@@ -32,9 +56,11 @@ const BottomRoutes = () => {
           style: {
             // marginBottom: 20,
             // backgroundColor: '#f4f4f4',
+            backgroundColor: 'transparent',
+            // backgroundColor: 'red',
             zIndex: 999,
-            opacity: 0,
-            display: 'none',
+            // opacity: 0,
+            // display: 'none',
           },
           tabBarComponent: () => {
             return(      
@@ -49,12 +75,12 @@ const BottomRoutes = () => {
         <BottomTab.Screen
           name="Home"
           component={HomeScreen}
-          style={styles.tabBtn}
-          options={{
-            title: 'New Clean',
-            tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-home" size={30}/>,
-            headerShown: false,
-          }}
+          // style={styles.tabBtn}
+          // options={{
+          //   title: 'New Clean',
+          //   tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-home" size={30}/>,
+          //   headerShown: false,
+          // }}
         />
         <BottomTab.Screen
           name="Addresses"
@@ -69,58 +95,58 @@ const BottomRoutes = () => {
         <BottomTab.Screen
           name="Schedule"
           component={ScheduleScreen}
-          options={{
-            title: 'Schedule',
-            tabBarIcon: ({ focused }) => <TouchableOpacity
-            // focused={focused}
-            activeOpacity={1}
-            style={{
-                borderRadius: Math.round((150 * 0.5) + (150 * 0.5)) / 2,
-                width: 150 * 0.5,
-                height: 150 * 0.5,
-                backgroundColor: '#fff',
-                backgroundColor: '#f4f4f4',
-                justifyContent: 'center',
-                alignItems: 'center',
-                zIndex: 20,
-            }}
-            underlayColor='#ccc'
-        >
-                  <TabBarIcon 
-                    name="md-clock" 
-                    size={50}
-                    focused={focused}
-                    style={{
-                      borderRadius: Math.round((150 * 0.5) + (150 * 0.5)) / 2,
-                      width: 150 * 0.5,
-                      height: 150 * 0.5,
-                      // backgroundColor: '#fff',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      zIndex: 20,
-                  }}
-                  />
-            </TouchableOpacity>
-          }}
+        //   options={{
+        //     title: 'Schedule',
+        //     tabBarIcon: ({ focused }) => <TouchableOpacity
+        //     // focused={focused}
+        //     activeOpacity={1}
+        //     style={{
+        //         borderRadius: Math.round((150 * 0.5) + (150 * 0.5)) / 2,
+        //         width: 150 * 0.5,
+        //         height: 150 * 0.5,
+        //         backgroundColor: '#fff',
+        //         backgroundColor: '#f4f4f4',
+        //         justifyContent: 'center',
+        //         alignItems: 'center',
+        //         zIndex: 20,
+        //     }}
+        //     underlayColor='#ccc'
+        // >
+        //           <TabBarIcon 
+        //             name="md-clock" 
+        //             size={50}
+        //             focused={focused}
+        //             style={{
+        //               borderRadius: Math.round((150 * 0.5) + (150 * 0.5)) / 2,
+        //               width: 150 * 0.5,
+        //               height: 150 * 0.5,
+        //               justifyContent: 'center',
+        //               alignItems: 'center',
+        //               zIndex: 20,
+        //           }}
+        //           />
+        //     </TouchableOpacity>
+        //   }}
         />
 
         <BottomTab.Screen
           name="Profile"
           component={ProfileScreen}
-          options={{
-            title: 'Profile',
-            tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-cog" size={30} />,
-          }}
+          // options={{
+          //   title: 'Profile',
+          //   tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-cog" size={30} />,
+          // }}
         />
         <BottomTab.Screen
           name="Help"
           component={HelpScreen}
-          options={{
-            title: 'Help',
-            tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-help-circle-outline" size={30}/>,
-          }}
+          // options={{
+          //   title: 'Help',
+          //   tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-help-circle-outline" size={30}/>,
+          // }}
         />
-      </BottomTab.Navigator>
+      </BottomTab.Navigator> 
+
     {/* </ImageBackground> */}
     {/* <NavBackground></NavBackground> */}
     </React.Fragment>
@@ -144,147 +170,34 @@ export default function BottomTabNavigator({ navigation, route }) {
 
   return (
     <View style={{height: '100%', width: '100%'}}>
-      <BottomRoutes />
-      {/* <View style={{height: 20, width: '100%', backgroundColor: 'transparent'}}/> */}
-      <Image 
+      
+      <ImageBackground 
+        style={{
+          height: '100%', 
+          // height: 120,
+          width: '100%',
+          position:'absolute',
+          bottom: 0,
+        }}
         source={require('../assets/images/navbar/navbar-background.png')}
-        style={styles.img}
-      />
-
-      <View style={{flexDirection: 'row', justifyContent: 'space-around', paddingBottom: 20}}>
-      <TouchableOpacity
-        onPress={
-          () => {
-            // setHomeActive(true)
-            setActive({
-              home: true,
-              add: false,
-              sche: false,
-              pro: false,
-              help: false
-            })
-            navigation.navigate('Home')
-          }
-        }
-        style={styles.tabItem}
       >
-        <Ionicons
-          name={'ios-home'}
-          size={30}
-          // style={{ marginBottom: -3 }}
-          style={active.home ? styles.active : styles.inactive} 
-          // color={focused ? 'green' : Colors.tabIconDefault}
-        />
-        <Text style={[styles.tabItemText, active.home ? styles.active : styles.inactive]}>Cleans</Text>
-      </TouchableOpacity>
 
-      <TouchableOpacity
-        onPress={() => {
-          setActive({
-            home: false,
-            add: true,
-            sche: false,
-            pro: false,
-            help: false
-          })
-          navigation.navigate('Addresses')
-          }
-        }
-        // style={{justifyContent: 'center'}}
-        style={styles.tabItem}
-      >
-        {/* <Feather name="map-pin" size={24} color="black" /> */}
-        <Ionicons
-          name={'ios-pin'}
-          size={30}
-          style={active.add ? styles.active : styles.inactive} 
-          // style={{ marginBottom: -3 }}
-          // color={focused ? 'green' : Colors.tabIconDefault}
+        <BottomRoutes 
+          style={styles.tabs}
+          navigation={navigation}
+          // focused={focused}
         />
-        <Text style={[styles.tabItemText, active.add ? styles.active : styles.inactive]}>
-          Addresses
-        </Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        onPress={() => {
-          setActive({
-            home: false,
-            add: false,
-            sche: true,
-            pro: false,
-            help: false
-          })
-          navigation.navigate('Schedule')}
-        }  
-        // style={{justifyContent: 'center'}}
-        style={styles.tabItem}
-      >
-        <Feather 
-          name="clock" 
-          size={50} 
-          color="#ccc" 
-        />
-        {/* <Ionicons
-          name={'md-clock'}
-          size={50}
-          style={active.sche ? styles.active : styles.inactive} 
-          // style={{ marginBottom: -3 }}
-          // color={focused ? 'green' : Colors.tabIconDefault}
+        
+        {/* <View style={{height: 20, width: '100%', backgroundColor: 'transparent'}}/> */}
+        
+        {/* <Image 
+          source={require('../assets/images/navbar/navbar-background.png')}
+          style={styles.img}
         /> */}
-        <Text style={[styles.tabItemText, active.sche ? styles.active : styles.inactive]}>Schedule</Text>
-      </TouchableOpacity>
 
-      <TouchableOpacity
-        // onPress={() => navigation.navigate('Profile')}
-        onPress={() => {
-          setActive({
-            home: false,
-            add: false,
-            sche: false,
-            pro: true,
-            help: false
-          })
-          navigation.navigate('Profile')}
-        }  
-        // style={{justifyContent: 'center'}}
-        style={styles.tabItem}
-      >
-        <Ionicons
-          name={'ios-cog'}
-          size={30}
-          // style={{ marginBottom: -3 }}
-          style={active.pro ? styles.active : styles.inactive} 
-          // color={focused ? 'green' : Colors.tabIconDefault}
-        />
-        <Text style={[styles.tabItemText, active.pro ? styles.active : styles.inactive]}>Profile</Text>
-      </TouchableOpacity>
+      </ImageBackground>
 
-      <TouchableOpacity
-        // onPress={() => navigation.navigate('Help')}
-        onPress={() => {
-          setActive({
-            home: false,
-            add: false,
-            sche: false,
-            pro: false,
-            help: true
-          })
-          navigation.navigate('Help')}
-        }  
-        // disabled={true}
-        style={styles.tabItem}
-      >
-        <Ionicons
-          name={'ios-help-circle-outline'}
-          size={30}
-          // style={{ marginBottom: -3 }}
-          style={active.help ? styles.active : styles.inactive} 
-          // color={activeOpacity ? 'green' : Colors.tabIconDefault}
-        />
-        <Text style={[styles.tabItemText, active.help ? styles.active : styles.inactive]}>Help</Text>
-      </TouchableOpacity>
-      </View>
+     
     </View>
   );
 }
@@ -298,15 +211,18 @@ const styles = StyleSheet.create({
   tabBtn: {
     paddingBottom: 20
   }, 
+  tab: {
+    zIndex: 99
+  },  
   img: {
     position: 'absolute',
-    bottom: 10,
-    // backgroundColor: 'red',
+    bottom: 0,
+    height: '14%',
+    zIndex: 0,
     width: Dimensions.get('window').width,
     // height: Dimensions.get('window').height
   },
   tabItem: {
-    // flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end',
     flex: 1

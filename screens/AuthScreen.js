@@ -1,11 +1,11 @@
 import * as WebBrowser from 'expo-web-browser';
-import {SecureStore} from 'expo';
+// import {SecureStore} from 'expo';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { Keyboard, Platform, StyleSheet, Text, TouchableOpacity, View, TextInput } from 'react-native';
 import { AsyncStorage } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { MonoText } from '../components/StyledText';
+// import { MonoText } from '../components/StyledText';
 
 import Colors from '../constants/Colors'
 
@@ -36,7 +36,8 @@ export const AuthScreen = ({navigation}) => {
       )
       console.log('Data:', data.data.token)
       auth.login(data.data.token)
-      await AsyncStorage.setItem('token', `${data.data.token}`);
+      // await AsyncStorage.setItem('activeTab', 'ad');
+      // await AsyncStorage.setItem('token', `${data.data.token}`);
       // navigation.navigate('Auth')
 
     } catch (e) {

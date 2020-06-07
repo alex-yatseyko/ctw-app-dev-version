@@ -70,12 +70,12 @@ export default function HomeScreen() {
         onPress={(e) => {
           setMarker(e.nativeEvent.coordinate)
           setRegion(region)
-          console.log(e.nativeEvent)
+          // console.log(e.nativeEvent)
         }}
         // region={region}
         onRegionChange={region => {
           // this.setState({region});
-          console.log(region)
+          // console.log(region)
           setRegion(region)
         }}
       >

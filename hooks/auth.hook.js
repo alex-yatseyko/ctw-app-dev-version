@@ -8,7 +8,9 @@ export const useAuth = () => {
 
     const login = useCallback((jwtToken) => {
         setToken(jwtToken)
+        const ad = 'ad'
         AsyncStorage.setItem('token', jwtToken);
+        AsyncStorage.setItem('activeTab', ad);
     }, [])
 
     const logout = useCallback(() => {

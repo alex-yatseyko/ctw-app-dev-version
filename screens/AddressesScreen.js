@@ -32,8 +32,6 @@ const Addresses = ({navigation}) => {
 
   useEffect(() => {
     getAddresses()
-    // console.log(locations.results)
-    // console.log(locations)
   }, [])
 
   return (

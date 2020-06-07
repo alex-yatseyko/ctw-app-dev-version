@@ -40,6 +40,7 @@ export const WelcomeScreen = ({navigation}) => {
           {
             headers: {'Content-Type': 'application/json'},
           })
+          alert(data.data.detail)
           navigation.navigate('Auth')
       } catch (e) {
           // console.log( 'Authentification:', e ? e : true )
