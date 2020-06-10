@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     marginHorizontal: 25,
     borderRadius: 5,
-    marginBottom: 50
+    marginBottom: 70
   },
   primaryButtonText: {
     color: '#fff',
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems:'center',
     justifyContent: 'space-between',
-    marginBottom: 20.
+    marginBottom: 20,
   },
   iconBlockText: {
     flexDirection: 'row',
