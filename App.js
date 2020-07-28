@@ -15,7 +15,7 @@ import useLinking from './navigation/useLinking';
 import BackendApiClient from './api/BackendApiClient';
 
 export default function App(props) {
-  const {token, login, logout, activeTab} = useAuth()
+  const {token, login, logout, activeTab} = useAuth();
 
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
   const [initialNavigationState, setInitialNavigationState] = React.useState();
@@ -26,10 +26,10 @@ export default function App(props) {
 
   // Load any resources or data that we need prior to rendering the app
   React.useEffect(() => {
+    console.log('TOken', token)
     async function loadResourcesAndDataAsync() {
       try {
         console.log('API Server', BackendApiClient.getApiBaseUrl())
-
 
         SplashScreen.preventAutoHide();
 

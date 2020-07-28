@@ -123,7 +123,9 @@ export const WelcomeScreen = ({navigation}) => {
 
       <Text style={[styles.titleEmail, se ? {marginTop: -45} : {}]}>Enter your email</Text>
       <TextInput
-        style={[styles.email, se ? {marginBottom: 25} : {marginBottom: 50}]}
+        // style={[styles.email, se ? {marginBottom: 25} : {marginBottom: 50}]}
+        style={[styles.email, {marginTop: 50}]}
+        // style={styles.email}
         placeholder="Type" 
         onChange={ changeHandler }
         name="email"
@@ -182,9 +184,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 25,
     marginTop: 10,
     // marginBottom: 10, for SE
-    marginBottom: 50,
+    // marginBottom: 50,
     paddingHorizontal: 10,
     paddingVertical: 12,
+    marginVertical: 30,
   },
   primaryTitle: {
     color: Colors.tintColor,
